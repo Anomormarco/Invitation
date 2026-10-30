@@ -1,0 +1,28 @@
+{
+  "name": "invite",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A cute, modern digital date invitation with a private response dashboard.",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,magenta \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "npm --workspace server run dev",
+    "dev:client": "npm --workspace client run dev",
+    "setup:local": "docker compose up -d --wait && npm run db:push && npm --workspace server run generate",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:reset": "docker compose down -v && docker compose up -d",
+    "db:migrate": "npm --workspace server run migrate",
+    "db:push": "npm --workspace server run push",
+    "db:studio": "npm --workspace server run studio",
+    "build": "npm --workspace client run build && npm --workspace server run build",
+    "start": "cross-env NODE_ENV=production npm --workspace server run start"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3"
+  }
+}

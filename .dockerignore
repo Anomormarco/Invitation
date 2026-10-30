@@ -1,0 +1,24 @@
+# deps & build output — reinstalled / rebuilt inside the image
+node_modules
+**/node_modules
+client/dist
+server/dist
+
+# secrets & local env
+.env
+.env.*
+**/.env
+**/.env.*
+
+# vcs & editor
+.git
+.gitignore
+.vscode
+.idea
+
+# local-only
+docker-compose.yml
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
